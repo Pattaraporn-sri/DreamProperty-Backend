@@ -10,7 +10,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 const PORT = process.env.PORT || 3002;
-const mongoUrl = "mongodb://localhost:27017/Data_property";
+// const mongoUrl = "mongodb://localhost:27017/Data_property";
+const mongoose = require('mongoose');
+require('dotenv').config();
+
+const mongoUrl = process.env.MONGODB_URI;
 const dbName = "Data_property";
 
 const url = "mongodb://localhost:27017";
@@ -22,7 +26,7 @@ const client = new MongoClient(url);
 
 // เชื่อมต่อ MongoDB
 mongoose
-  .connect("mongodb://localhost:27017/Data_property", {
+  .connect(mongoUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
