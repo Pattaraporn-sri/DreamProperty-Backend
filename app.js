@@ -6,19 +6,21 @@ import { MongoClient } from "mongodb";
 import cors from "cors";
 import { Schema, model } from "mongoose";
 
-const app = express();
-app.use(express.json());
-app.use(cors());
-const PORT = process.env.PORT || 3002;
-// const mongoUrl = "mongodb://localhost:27017/Data_property";
-const mongoose = require('mongoose');
-require('dotenv').config();
 
-const mongoUrl = process.env.MONGODB_URI;
-const dbName = "Data_property";
+  const app = express();
+  app.use(express.json());
+  app.use(cors());
+  const PORT = process.env.PORT || 3002;
 
-const url = "mongodb://localhost:27017";
-const client = new MongoClient(url);
+  // const mongoUrl = "mongodb://localhost:27017/Data_property";
+  const mongoose = require('mongoose');
+  require('dotenv').config();
+
+  const mongoUrl = process.env.MONGODB_URI;
+  const dbName = "Data_property";
+
+  const url = "mongodb://localhost:27017";
+  const client = new MongoClient(url);
 // const Property = mongoose.model(
 //   "property",
 //   new mongoose.Schema({}, { strict: false })
@@ -29,6 +31,7 @@ mongoose
   .connect(mongoUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    dbName: dbName
   })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Failed to connect to MongoDB", err));
